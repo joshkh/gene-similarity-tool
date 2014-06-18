@@ -1,0 +1,111 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Multimine Search Version</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/search-results.css">
+  <link rel="stylesheet" href="http://cdn.intermine.org/css/font-awesome/4.x/css/font-awesome.min.css">
+
+  <script charset="UTF-8"
+          data-main="main"
+          type="text/javascript"
+          src="bower_components/requirejs/require.js">
+  </script>
+
+
+  <style>[ng-cloak] { display: none; }</style>
+</head>
+
+<body ng-cloak ng-controller="DemoCtrl">
+
+  <div class="container-fluid">
+
+    <div class="row" ng-controller="SearchInputCtrl">
+
+    <!-- {{searchResults}} -->
+
+      <div class="hcenteredbox">
+
+        <div class="searchbox">
+
+          <form class="navbar-form halfwidth" role="search" ng-submit="step.data.searchTerm = searchterm">
+            <div class="input-group input-group-lg">
+              <input type="text"class="form-control" placeholder="eve, thor, ey, pax" name="searchterm" id="searchterm" ng-model="searchterm">
+              <div class="input-group-btn">
+                <button snap-toggle ng-click="complain(searchterm)" class="btn btn-default" type="submit">Search </button>
+              </div>
+            </div>
+          </form>
+
+        </div>
+      </div>
+
+      <h2 ng-show="searchResults">Similar Genes</h2>
+      <table>
+        <tr style="border: 1px solid black;" ng-repeat="result in searchResults.results | orderBy: '-totalscore'">
+          <td>
+            {{result.symbol}}
+          </td>
+          <td>
+            {{result.totalscore}}
+          </td>
+          <td>
+
+            <div ng-repeat="originalGene in result.originalGenes">
+            <h4>{{originalGene.symbol}}</h4>
+              <ul>
+              <li ng-repeat="commonItem in originalGene.commonItems">{{commonItem.name}}</li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+      </table>
+
+
+
+
+    </div>
+
+<!--     <div class="row" ng-controller="SearchResultsCtrl" ng-show="step.data.searchTerm">
+
+      <div class="col-xs-3">
+
+        <ng-include src="'facets.html'"></ng-include>
+
+        <div class="panel panel-default messages">
+          <div class="panel-heading">{{sumAvailable}} Available items</div>
+          <div class="panel-body">
+            <div class="list-group-item"
+                 ng-show="data.request.ids.length"
+                 ng-repeat="(key, data) in messages.ids">
+              {{data.request.ids.length}}
+              {{data.request.type}}s at
+              <code>{{data.service.name}}</code>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-xs-9">
+
+        <div class="panel panel-default">
+
+          <div class="panel-heading">
+              <ng-include src="'panel-heading.html'"></ng-include>
+          </div>
+
+          <ng-include src="'template.html'"></ng-include>
+        </div>
+      </div>
+    </div> -->
+
+
+  </div>
+
+</body>
+</html>
