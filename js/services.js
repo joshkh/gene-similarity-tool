@@ -35,31 +35,52 @@ define(['angular', 'imjs'], function (angular, intermine) {
   		return false;
   	}
 
-  	console.log("LOADED");
+  return result;
+
+  }]);
+
+
+  Services.factory('IDResolverService', ['$http', '$q', function ($http, $q) {
+
+    var result = {};
+
+    console.log("IMJS: ", intermine);
+
+    result.getIdsFromSymbols = function(symbols) {
+
+      var deferred = $q.defer();
+
+      var request = {"identifiers": symbols, "type": "Gene","caseSensitive": true,"wildCards": true,"extra": "D. melanogaster"}
+      var service = intermine.Service.connect({root: 'www.flymine.org/query'});
+
+      var jobbing = service.resolveIds(request);
+
+      return jobbing.then(function (job) {
+        return job.poll(); // Always clean up.
+        // job.poll().then(function(){console.log("RESULTS", results)}).then(job.del, job.del); // Always clean up.
+      });
+
+    }
+
+    
+
+     
+
+    function withResults (results) {
+      console.log("from with results", results);
+    }
 
 
 
-  	// var serviceName = "Joshua";
-
-  	// console.log("intermine", intermine);
-
-  	// //return serviceName;
-
-  	// $http({method: 'GET', url: '/testurl.txt'}).
-   //  success(function(data, status, headers, config) {
-   //    // this callback will be called asynchronously
-   //    // when the response is available
-   //    console.log("status", status, data);
-   //  }).
-   //  error(function(data, status, headers, config) {
-   //    // called asynchronously if an error occurs
-   //    // or server returns response with an error status.
-   //    console.log("status", status, data);
-   //  });
 
   return result;
 
   }]);
+
+
+
+
+
 
 
 });
