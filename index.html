@@ -63,6 +63,13 @@
     </li>
       <!-- <input ng-model="item.totalscore"> -->
       <table>
+        <thead>
+          <tr>
+            <th>Similar Gene</th>
+            <th>Score</th>
+            <th>Common Items</th>
+          </tr>
+        </thead>
         <tr ng-repeat="result in searchResults.results | filter:item | orderBy: '-totalscore'">
           <td>
             {{result.primaryIdentifier}} ({{result.symbol}})
