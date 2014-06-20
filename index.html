@@ -32,7 +32,7 @@
 
 
     <!-- <network-chart data='example'>ngchart</network-chart> -->
-    <bars-network chart-data="flaredata"  ></bars-chart>
+    <!-- <bars-network chart-data="flaredata"  ></bars-chart> -->
 
     <!-- {{searchResults}} -->
 
@@ -44,7 +44,7 @@
             <div class="input-group input-group-lg">
               <input type="text" class="form-control" placeholder="eve, zen, ey, tin" name="searchterm" id="searchterm" ng-model="searchterm">
               <div class="input-group-btn">
-                <button snap-toggle ng-click="addstuff(searchterm)" class="btn btn-default">Search </button>
+                <button snap-toggle ng-click="resolveIds(searchterm)" class="btn btn-default">Search </button>
               </div>
             </div>
           </form>
@@ -63,20 +63,20 @@
     </li>
       <!-- <input ng-model="item.totalscore"> -->
       <table>
-        <tr style="border: 1px solid black;" ng-repeat="result in searchResults.results | filter:item | orderBy: '-totalscore'">
+        <tr ng-repeat="result in searchResults.results | filter:item | orderBy: '-totalscore'">
           <td>
-            <h4>{{result.symbol}}<h4>
+            {{result.primaryIdentifier}} ({{result.symbol}})
           </td>
           <td>
             {{result.totalscore}}
           </td>
           <td>
 
-            <div ng-repeat="originalGene in result.originalGenes">
-            <h4>{{originalGene.symbol}}</h4>
-<!--               <ul>
+            <div class="orig" ng-repeat="originalGene in result.originalGenes">
+            {{result.primaryIdentifier}} ({{originalGene.symbol}})
+              <ul>
               <li ng-repeat="commonItem in originalGene.commonItems">{{commonItem.name}}</li>
-              </ul> -->
+              </ul>
             </div>
           </td>
         </tr>

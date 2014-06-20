@@ -11,6 +11,13 @@ body {
     font-weight: 300;
 }
 
+.orig {
+	background: grey;
+	float: left;
+	padding: 6px;
+	margin: 4px;
+}
+
 .chart {
     background: #eee;
     padding: 3px;
