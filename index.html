@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="css/angular-slider.css">
   <link rel="stylesheet" href="http://cdn.intermine.org/css/font-awesome/4.x/css/font-awesome.min.css">
 
+
+
   <script charset="UTF-8"
           data-main="main"
           type="text/javascript"
@@ -33,10 +35,13 @@
 
     <!-- <network-chart data='example'>ngchart</network-chart> -->
     <!-- <bars-network chart-data="flaredata"  ></bars-chart> -->
+    <bars-chart></bars-chart>
 
     <!-- {{searchResults}} -->
 
       <div class="hcenteredbox">
+
+
 
         <div class="searchbox">
 
@@ -52,7 +57,15 @@
 
 
         </div>
+
+        <div id="spinner"></div>
       </div>
+
+
+
+      <div class="col-xs-12">
+
+        <div class="panel panel-default messages">
 
 
 
@@ -60,34 +73,37 @@
     <!-- <h2 ng-show="searchResults">Similar Genes</h2> -->
     
 
-    </li>
-      <!-- <input ng-model="item.totalscore"> -->
-      <table>
-        <thead>
-          <tr>
-            <th>Similar Gene</th>
-            <th>Score</th>
-            <th>Common Items</th>
-          </tr>
-        </thead>
-        <tr ng-repeat="result in searchResults.results | filter:item | orderBy: '-totalscore'">
-          <td>
-            {{result.primaryIdentifier}} ({{result.symbol}})
-          </td>
-          <td>
-            {{result.totalscore}}
-          </td>
-          <td>
 
-            <div class="orig" ng-repeat="originalGene in result.originalGenes">
-            {{result.primaryIdentifier}} ({{originalGene.symbol}})
-              <ul>
-              <li ng-repeat="commonItem in originalGene.commonItems">{{commonItem.name}}</li>
-              </ul>
-            </div>
-          </td>
-        </tr>
-      </table>
+            <!-- <input ng-model="item.totalscore"> -->
+            <table ng-show="searchResults">
+              <thead>
+                <tr>
+                  <th>Similar Gene</th>
+                  <th>Score</th>
+                  <th>Common Items</th>
+                </tr>
+              </thead>
+              <tr ng-repeat="result in searchResults.results | filter:item | orderBy: '-totalscore'">
+                <td>
+                  {{result.primaryIdentifier}} ({{result.symbol}})
+                </td>
+                <td>
+                  {{result.totalscore}}
+                </td>
+                <td>
+
+                  <div class="orig" ng-repeat="originalGene in result.originalGenes">
+                  {{result.primaryIdentifier}} ({{originalGene.symbol}})
+                    <ul>
+                    <li ng-repeat="commonItem in originalGene.commonItems">{{commonItem.name}} ({{commonItem.class}})</li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+            </table>
+
+          </div>
+        </div>
 
 
 

@@ -9,6 +9,7 @@ require.config({
     "angular-ui": '/bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls',
     domReady: '/bower_components/requirejs-domready/domReady',
     'd3': '/bower_components/d3/d3',
+    'spin': './spin.min'
   },
   shim: {
     'angular': {
@@ -17,8 +18,8 @@ require.config({
     'angular-route': ['angular'],
     'angular-ui': ['angular'],
     underscore: {exports: '_'},
-    d3: {exports: 'd3'}
-
+    d3: {exports: 'd3'},
+    'spin': {exports: 'Spinner'}
   },
   priority: [ 'angular' ]
 });
